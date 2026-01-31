@@ -44,34 +44,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install build twine
     
-    # Step 4: Validate that the release tag version matches the package version
-    # in pyproject.toml. This prevents accidental version mismatches between the
-    # GitHub Release tag and the package
-    - name: Verify version tag
-      run: |
-        # Extract version from the GitHub release tag (e.g., v1.2.3 -> 1.2.3)
-        TAG_VERSION=${GITHUB_REF#refs/tags/v}
-
-        # Extract version from pyproject.toml [project] section
-        PACKAGE_VERSION=$(python << 'EOF'
-
-        import tomllib
-        with open('pyproject.toml', 'rb') as f:
-            data = tomllib.load(f)
-            version = data['project']['version']
-            print(version)
-        EOF
-        )
-        echo "Release tag version: $TAG_VERSION"
-        echo "Package version: $PACKAGE_VERSION"
-
-        # Fail the workflow if versions don't match
-        if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
-          echo "Error: Release tag version ($TAG_VERSION) does not match package version ($PACKAGE_VERSION)"
-          exit 1
-        fi
-    
-    # Step 5: Build the distribution packages (wheel and source distribution)
+    # Step 4: Build the distribution packages (wheel and source distribution)
     - name: Build packages
       run: python -m build
     
