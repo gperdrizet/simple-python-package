@@ -59,13 +59,13 @@ jobs:
 
         # Extract version from pyproject.toml [tool.poetry] section
         PACKAGE_VERSION=$(python << 'EOF'
+import tomllib
 
-        import tomllib
-        with open('pyproject.toml', 'rb') as f:
-            data = tomllib.load(f)
-          version = data['tool']['poetry']['version']
-            print(version)
-        EOF
+with open('pyproject.toml', 'rb') as f:
+    data = tomllib.load(f)
+    version = data['tool']['poetry']['version']
+    print(version)
+EOF
         )
         echo "Release tag version: $TAG_VERSION"
         echo "Package version: $PACKAGE_VERSION"
