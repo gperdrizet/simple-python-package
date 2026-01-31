@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "publish-to-pypi"
+version = "0.1.0"
+authors = [
+    {name = "gperdrizet", email = "george@perdrizet.org"},
+]
+description = "A project template for publication of simple Python packages to PyPI"
+readme = "README.md"
+license = {text = "GPLv3"}
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["Python", "PyPI", "DevOps", "open-source"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+
+[project.urls]
+Homepage = "https://github.com/gperdrizet/publish-to-pypi"
+Documentation = "https://gperdrizet.github.io/publish-to-pypi/README.MD"
+Repository = "https://github.com/gperdrizet/publish-to-pypi"
+Issues = "https://github.com/gperdrizet/publish-to-pypi/issues"
+PyPI = "https://pypi.org/project/publish-to-pypi"
