@@ -1,0 +1,87 @@
+# Workflow to automatically build and publish Python package to PyPI
+# This workflow is triggered on release publication or manual dispatch
+name: Publish to PyPI
+
+# Define trigger conditions
+on:
+
+  # Trigger when a GitHub Release is published
+  release:
+    types: [published]
+
+  # Allow manual trigger from the GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  # Main job: build distribution packages and publish to PyPI
+  build-and-publish:
+    name: Build and publish Python to PyPI
+    runs-on: ubuntu-latest
+
+    # Use the 'pypi' environment for trusted publishing (requires OIDC setup)
+    environment: pypi
+
+    # Define permissions needed for this workflow
+    permissions:
+      contents: read  # Read repository contents
+      id-token: write  # Required for OIDC trusted publishing token generation
+    
+    steps:
+
+    # Step 1: Clone the repository to access source code and configuration files
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Step 2: Install Python runtime (version 3.12)
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    # Step 3: Install required build tools
+    # - pip: Package installer for dependencies
+    # - build: Tool to build Python packages (wheel and sdist formats)
+    # - twine: Tool to validate and upload packages to PyPI
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+    
+    # Step 4: Validate that the release tag version matches the package version
+    # in pyproject.toml. This prevents accidental version mismatches between the
+    # GitHub Release tag and the package
+    - name: Verify version matches release tag
+      run: |
+        # Extract version from the GitHub release tag (e.g., v1.2.3 -> 1.2.3)
+        TAG_VERSION=${GITHUB_REF#refs/tags/v}
+        # Extract version from pyproject.toml [project] section
+        PACKAGE_VERSION=$(python << 'EOF'
+        import tomllib
+        with open('pyproject.toml', 'rb') as f:
+            data = tomllib.load(f)
+            version = data['project']['version']
+            print(version)
+        EOF
+        )
+        echo "Release tag version: $TAG_VERSION"
+        echo "Package version: $PACKAGE_VERSION"
+        # Fail the workflow if versions don't match
+        if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+          echo "Error: Release tag version ($TAG_VERSION) does not match package version ($PACKAGE_VERSION)"
+          exit 1
+        fi
+    
+    # Step 5: Build the distribution packages (wheel and source distribution)
+    - name: Build distribution packages
+      run: python -m build
+    
+    # Step 6: Validate the built packages before uploading
+    # Checks for common metadata issues, dependencies, and package integrity
+    - name: Check distribution packages
+      run: twine check dist/*
+    
+    # Step 7: Upload packages to PyPI using GitHub's trusted publishing (OIDC)
+    # This eliminates the need to store PyPI API tokens as secrets
+    - name: Publish to PyPI using Trusted Publishing
+      uses: pypa/gh-action-pypi-publish@release/v1
