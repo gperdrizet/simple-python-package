@@ -87,4 +87,4 @@ jobs:
     # Step 7: Upload packages to PyPI using GitHub's trusted publishing (OIDC)
     # This eliminates the need to store PyPI API tokens as secrets
     - name: Publish to PyPI
-      uses: gperdrizet/gh-action-pypi-publish@v1
+      uses: gperdrizet/gh-action-pypi-publish@v1.13.0
