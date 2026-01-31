@@ -1,17 +1,16 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"
 
-[project]
+[tool.poetry]
 name = "simple-python-package"
-version = "0.2.0"
-authors = [
-    {name = "gperdrizet", email = "george@perdrizet.org"},
-]
+version = "0.3.0"
 description = "A project template for publication of simple Python packages to PyPI"
+authors = ["gperdrizet <george@perdrizet.org>"]
 readme = "README.md"
-license = {text = "GPLv3"}
-requires-python = ">=3.10"
+license = "GPLv3"
+packages = [{ include = "lorenz", from = "src" }]
+exclude = ["notebooks/**"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
@@ -25,19 +24,15 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 keywords = ["Python", "PyPI", "DevOps", "open-source"]
-dependencies = [
-    "matplotlib",
-    "pandas",
-]
 
-[project.urls]
+[tool.poetry.dependencies]
+python = ">=3.10"
+matplotlib = "*"
+pandas = "*"
+
+[tool.poetry.urls]
 Homepage = "https://github.com/gperdrizet/simple-python-package"
 Documentation = "https://gperdrizet.github.io/simple-python-package/README.MD"
 Repository = "https://github.com/gperdrizet/simple-python-package"
 Issues = "https://github.com/gperdrizet/simple-python-package/issues"
 PyPI = "https://pypi.org/project/simple-python-package"
-[tool.setuptools]
-py-modules = ["lorenz"]
-
-[tool.setuptools.package-dir]
-"" = "src"

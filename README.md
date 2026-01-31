@@ -7,7 +7,7 @@ This repository is a minimal template for publishing a small Python package to P
 ## Quick start
 
 1. Fork this repository on GitHub and mark your fork as a template via the repo settings (once)
-2. Try and/or remove the demo files from your fork: `src/lorenz.py` & `notebooks/lorenz_demo.py` (once)
+2. Try and/or remove the demo files from your fork: `src/lorenz.py` & `notebooks/lorenz_demo.ipynb` (once)
 3. Create a pending publisher on [PyPI.org](https://pypi.org) (each new project)
 4. Create a new repository for your project from your template fork on GitHub (each new project)
 5. Update `pyproject.toml` to reflect your new project's metadata (each new project)
@@ -47,9 +47,8 @@ This repository ships a tiny demo package (`lorenz`) used to illustrate packagin
 #### 2.1. Try the demo locally
 
 
-1. Open the repo in a devcontainer or GitHub Codespace.
+1. Open your fork in a devcontainer or GitHub Codespace.
 2. Install the package in editable mode:
-following
 	```text
 	pip install -e .
 	```
@@ -58,7 +57,7 @@ following
 
 #### 2.2. Install the demo from PyPI
 
-Since the demo package has been published to PyPI from this repo, you can install it via pip anywhere:
+Since the demo package has been published to PyPI from this repo, you can install it via pip and use it anywhere:
 
 ```text
 pip install simple-python-package
@@ -67,7 +66,7 @@ pip install simple-python-package
 #### 2.3. Remove the demo from your fork
 
 If you want a clean template fork to start new projects, simply delete the demo files:
-- `src/lorenz.py](src/lorenz.py`
+- `src/lorenz.py`
 - `notebooks/lorenz_demo.ipynb`
 
 
@@ -92,9 +91,10 @@ Do this first, before naming the GitHub repository to determine if your planned 
 
 Update `pyproject.toml` with your project metadata:
 
-- Change `name`, `authors` and `description`
-- Update `classifiers`, `keywords`, and `dependencies`
-- Replace or remove `[project.urls]`
+- Change `name`, `authors`, and `description` in `[tool.poetry]`
+- Update `classifiers` and `keywords` in `[tool.poetry]`
+- Update runtime dependencies in `[tool.poetry.dependencies]`
+- Replace or remove `[tool.poetry.urls]`
 
 ### 6. Commit and push (each code update)
 
@@ -102,7 +102,7 @@ Use the repo to develop your project as you normally would. Place Python modules
 
 ### 7. Tag and publish a release (each code update)
 
-1. Create a GitHub release tag that matches your current `version` in `pyproject.toml` (e.g., `0.1.0` or `v0.1.0` - see [here](https://semver.org/) for information about version numbering).
+1. Create a GitHub release tag that matches your current `version` under `[tool.poetry]` in `pyproject.toml` (e.g., `0.1.0` or `v0.1.0` - see [here](https://semver.org/) for information about version numbering).
 2. The **Publish to PyPI** workflow will build and publish automatically.
 
 If you prefer a manual run, you can trigger the workflow from the **Actions** tab.
