@@ -1,5 +1,7 @@
 # Simple Python package
 
+[![Publish to PyPI](https://github.com/gperdrizet/simple-python-package/actions/workflows/publish-to-pypi.yml/badge.svg)](https://github.com/gperdrizet/simple-python-package/actions/workflows/publish-to-pypi.yml)
+
 This repository is a minimal template for publishing a small Python package to PyPI using GitHub Actions and trusted publishing.
 
 ## Purpose
