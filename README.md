@@ -1,2 +1,3 @@
-# publish-to-pypi
-Boilerplate project template for PyPI package
+# Simple Python package
+
+Template repository for publication of simple Python package to PyPI.
