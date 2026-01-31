@@ -36,6 +36,44 @@ Do this first, before naming the GitHub repository to determine if your planned 
 
 If you prefer a manual run, you can trigger the workflow from the **Actions** tab.
 
+## Demo package (Lorenz system)
+
+This repository ships a tiny demo package (`lorenz`) used to illustrate packaging and publishing. It is safe to keep as a learning example or remove when you start your own project.
+
+### Try it locally (within this repo)
+
+1. Create a virtual environment and install the package in editable mode:
+	- `python -m venv .venv`
+	- `source .venv/bin/activate`
+	- `pip install -r requirements.txt`
+	- `pip install -e .`
+2. Run the demo notebook in [notebooks/lorenz_demo.ipynb](notebooks/lorenz_demo.ipynb) or import the module in a Python REPL:
+	- `from lorenz import simulate`
+	- `simulate()`
+
+### Install it in other projects
+
+Once you publish the package to PyPI, install it like any other dependency:
+	- `pip install <your-package-name>`
+
+If you want to test it before publishing, install directly from a local path or a Git URL:
+	- `pip install /path/to/your/fork`
+	- `pip install git+https://github.com/<you>/<repo>.git`
+
+### Remove it from a template fork
+
+If you are using this repo as a template and want to remove the demo package entirely:
+
+1. Delete the demo files:
+	- [src/lorenz.py](src/lorenz.py)
+	- [notebooks/lorenz_demo.ipynb](notebooks/lorenz_demo.ipynb)
+2. Update `pyproject.toml`:
+	- Change `name`, `description`, and `[project.urls]` to your project.
+	- Remove any demo-specific keywords or classifiers if you added them.
+3. Update this README to describe your project and remove references to the demo.
+
+After these steps, your fork will be a clean starting point for your own package.
+
 ## Project structure
 
 ```
