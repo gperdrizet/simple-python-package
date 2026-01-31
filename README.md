@@ -51,7 +51,7 @@ If you prefer a manual run, you can trigger the workflow from the **Actions** ta
 ├── README.md                    # Project overview and setup instructions
 ├── requirements.txt             # Dev/test dependencies for local usage
 ├── notebooks/
-│   └── lorenze_demo.ipynb       # Example notebook demonstrating the package
+│   └── lorenz_demo.ipynb        # Example notebook demonstrating the package
 └── src/
-	└── lorenze.py               # Example module shipped in the package
+	└── lorenz.py                # Example module shipped in the package
 ```

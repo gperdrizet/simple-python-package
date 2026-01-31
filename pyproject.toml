@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simple-python-package"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
     {name = "gperdrizet", email = "george@perdrizet.org"},
 ]
@@ -37,7 +37,7 @@ Repository = "https://github.com/gperdrizet/simple-python-package"
 Issues = "https://github.com/gperdrizet/simple-python-package/issues"
 PyPI = "https://pypi.org/project/simple-python-package"
 [tool.setuptools]
-py-modules = ["lorenze"]
+py-modules = ["lorenz"]
 
 [tool.setuptools.package-dir]
 "" = "src"
