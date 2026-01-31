@@ -5,10 +5,6 @@ name: Publish to TestPyPI
 # Define trigger conditions
 on:
 
-  # Trigger when a GitHub Release is published
-  release:
-    types: [published]
-
   # Allow manual trigger from the GitHub Actions tab
   workflow_dispatch:
 
