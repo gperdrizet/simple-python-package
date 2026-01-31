@@ -56,6 +56,6 @@ jobs:
     # Step 7: Upload packages to TestPyPI using GitHub's trusted publishing (OIDC)
     # This eliminates the need to store TestPyPI API tokens as secrets
     - name: Publish to TestPyPI
-      uses: gperdrizet/gh-action-pypi-publish@release/v1
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
         repository-url: https://test.pypi.org/legacy/
