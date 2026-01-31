@@ -4,12 +4,6 @@
 
 This repository is a minimal template for publishing a small Python package to PyPI using GitHub Actions and trusted publishing.
 
-## Purpose
-
-- Provide a clean, `src`-layout package structure.
-- Include a simple demo notebook and module example.
-- Publish to PyPI via GitHub Actions using OIDC trusted publishing.
-
 ## Usage
 
 ### 1. Set up a trusted publisher on PyPI
@@ -21,6 +15,8 @@ This repository is a minimal template for publishing a small Python package to P
 	- **Repository**: your repo name
 	- **Workflow**: `publish-to-pypi.yml`
 	- **Environment**: `pypi`
+
+Do this first, before naming the GitHub repository to determine if your planned name is available on PyPI. The GitHub repo and PyPI project names don't have to match, but it's nice if they do!
 
 ### 2. Fork this repo and start a new project
 
@@ -39,3 +35,23 @@ This repository is a minimal template for publishing a small Python package to P
 4. The **Publish to PyPI** workflow will build and publish automatically.
 
 If you prefer a manual run, you can trigger the workflow from the **Actions** tab.
+
+## Project structure
+
+```
+.
+├── .devcontainer/               # Dev container config
+├── .git/                        # Local Git metadata
+├── .github/                     # GitHub configuration
+│   └── workflows/
+│       └── publish-to-pypi.yml  # Builds package and publishes to PyPI
+├── .gitignore                   # Files and folders Git should ignore
+├── LICENSE                      # Package license
+├── pyproject.toml               # Package metadata, build system, and dependencies
+├── README.md                    # Project overview and setup instructions
+├── requirements.txt             # Dev/test dependencies for local usage
+├── notebooks/
+│   └── lorenze_demo.ipynb       # Example notebook demonstrating the package
+└── src/
+	└── lorenze.py               # Example module shipped in the package
+```
