@@ -25,7 +25,10 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 keywords = ["Python", "PyPI", "DevOps", "open-source"]
-dependencies = []
+dependencies = [
+    "matplotlib",
+    "pandas",
+]
 
 [project.optional-dependencies]
 dev = []
@@ -36,3 +39,9 @@ Documentation = "https://gperdrizet.github.io/publish-to-pypi/README.MD"
 Repository = "https://github.com/gperdrizet/publish-to-pypi"
 Issues = "https://github.com/gperdrizet/publish-to-pypi/issues"
 PyPI = "https://pypi.org/project/publish-to-pypi"
+
+[tool.setuptools]
+py-modules = ["lorenze"]
+
+[tool.setuptools.package-dir]
+"" = "src"
