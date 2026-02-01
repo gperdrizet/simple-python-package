@@ -9,7 +9,7 @@ description = "A project template for publication of simple Python packages to P
 authors = ["gperdrizet <george@perdrizet.org>"]
 readme = "README.md"
 license = "GPLv3"
-packages = [{ include = "lorenz", from = "src" }]
+packages = [{ include = "lorenz.py", from = "src" }]
 exclude = ["notebooks/**"]
 classifiers = [
     "Development Status :: 4 - Beta",
