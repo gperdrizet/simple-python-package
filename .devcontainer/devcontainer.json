@@ -7,7 +7,7 @@
 	// - Common development tools (git, curl, wget, etc.)
 	// - Non-root user 'vscode' for security
 	"name": "Python 3.12",
-	"image": "mcr.microsoft.com/devcontainers/python:3.12",
+	"image": "mcr.microsoft.com/devcontainers/python:3.12@sha256:d5598d1a134a6ae7d4a2d829910d54020a1f057884d59f206584ac899131665a",
 
 	// Custom configuration options
 	"customizations": {
@@ -44,7 +44,7 @@
 		  "ms-python.python",                       // Core Python language support, IntelliSense, debugging
 		  "ms-toolsai.jupyter",                     // Jupyter notebook support for interactive data science
 		  "streetsidesoftware.code-spell-checker",  // Spell checking for code and documentation
-          "github.vscode-github-actions"            // View and manage GitHub Actions workflows
+		  "github.vscode-github-actions"            // View and manage GitHub Actions workflows
 		]
 	  }
 	},
@@ -52,17 +52,17 @@
 	// Use 'onCreateCommand' to run commands once when the container is created
 	// This runs only on initial container creation, not on subsequent starts/attaches
 	// Steps:
-	// 1. Update package lists and upgrade existing packages for security
+	// 1. Pin apt sources to a Debian snapshot for reproducible OS packages
 	// 2. Upgrade pip to latest version for better dependency resolution
 	// 3. Install all Python dependencies from requirements.txt to user site-packages
 	//    (--user flag avoids permission issues and keeps packages separate from system)
-	"onCreateCommand": "sudo apt update && sudo apt upgrade -y && pip3 install --upgrade pip && pip3 install --user -r requirements.txt",
+	"onCreateCommand": "sudo bash -c 'set -e; SNAPSHOT=20260201T000000Z; printf \"%s\\n\" \"deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/$SNAPSHOT bookworm main\" \"deb [check-valid-until=no] http://snapshot.debian.org/archive/debian-security/$SNAPSHOT bookworm-security main\" \"deb [check-valid-until=no] http://snapshot.debian.org/archive/debian/$SNAPSHOT bookworm-updates main\" > /etc/apt/sources.list; apt-get update' && pip3 install --upgrade pip && pip3 install --user -r requirements.txt",
 
 	// Use 'postCreateCommand' to run commands once after the container is created
 	// This runs after onCreateCommand completes
 	// 1. Creates the 'src' and 'tests' directories
 	// Using mkdir -p ensures no error if directory already exists
-	"postCreateCommand": "mkdir -p src && mkidr -p tests",
+	"postCreateCommand": "mkdir -p src",
 
 	// Use 'postAttachCommand' to run commands each time a user connects to the container
 	// This runs every time VS Code attaches/reconnects to the container
