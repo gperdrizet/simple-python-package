@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "simple-python-package"
-version = "0.3.0"
+version = "0.4.0"
 description = "A project template for publication of simple Python packages to PyPI"
 authors = ["gperdrizet <george@perdrizet.org>"]
 readme = "README.md"
