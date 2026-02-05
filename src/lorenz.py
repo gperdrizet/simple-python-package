@@ -11,7 +11,16 @@ import pandas as pd
 
 @dataclass
 class LorenzButterfly:
-    '''Generate and plot Lorenz butterfly trajectories.'''
+    '''Generate and plot Lorenz butterfly trajectories.
+
+    Args:
+        sigma: Prandtl number controlling horizontal convection strength.
+        rho: Rayleigh number controlling temperature gradient/chaos level.
+        beta: Geometry factor (often $8/3$ for the classic system).
+        dt: Integration time step.
+        steps: Number of integration steps.
+        initial: Starting point as (x, y, z).
+    '''
 
     sigma: float = 10.0
     rho: float = 28.0

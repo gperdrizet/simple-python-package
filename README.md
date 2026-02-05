@@ -60,7 +60,7 @@ This repository ships a tiny demo package (`lorenz`) used to illustrate packagin
 Since the demo package has been published to PyPI from this repo, you can install it via pip and use it anywhere:
 
 ```text
-pip install simple-python-package
+pip install lorenz
 ```
 
 #### 2.3. Remove the demo from your fork
