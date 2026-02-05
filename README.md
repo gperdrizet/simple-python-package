@@ -35,7 +35,7 @@ This repository is a minimal template for publishing a small Python package to P
 ```
 ## Usage
 
-### 1. Fork and mark the template (once)
+### 1. Fork and mark as template (once)
 
 1. Fork this repository.
 2. In the fork, open **Settings → General → Template repository** and enable it.
